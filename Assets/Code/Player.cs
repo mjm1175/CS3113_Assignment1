@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Transform feetPos;
     public bool isgrounded = false; 
     int jumps = 0;
+    bool normalControls = true;
 
 
     void Start()
@@ -22,7 +23,11 @@ public class Player : MonoBehaviour
     
     void FixedUpdate()
     {
-        xSpeed = Input.GetAxis("Horizontal") * speed;
+        if (normalControls){
+            xSpeed = Input.GetAxis("Horizontal") * speed;
+        } else {
+            xSpeed = -Input.GetAxis("Horizontal") * speed;
+        }
         _rigidbody.velocity = new Vector2(xSpeed, _rigidbody.velocity.y);
     }
 
@@ -39,5 +44,11 @@ public class Player : MonoBehaviour
             _rigidbody.AddForce(new Vector2(0,jumpForce));
             jumps --;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Switch")){
+            normalControls = !normalControls;
+        }        
     }
 }
