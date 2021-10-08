@@ -9,6 +9,7 @@ public class Light : MonoBehaviour
     public GameObject player;
     public Light2D playerLight;
     public Player playerScript;
+    public float minRadius = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +20,10 @@ public class Light : MonoBehaviour
     void LateUpdate()
     {
         if(playerScript.isgrounded){
-            playerLight.pointLightOuterRadius = 3;
+            if(playerLight.pointLightOuterRadius > minRadius) playerLight.pointLightOuterRadius -= Time.deltaTime * 100;
         }
         else{
-            playerLight.pointLightOuterRadius = 100;
+            playerLight.pointLightOuterRadius += Time.deltaTime * 20;
         }
         transform.position = player.transform.position;
     }
