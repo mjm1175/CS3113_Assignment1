@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     float xSpeed = 0;
     Rigidbody2D _rigidbody;
     public Transform feetPos;
-    public bool isgrounded = false; 
+    public bool isgrounded = false;
     int jumps = 0;
     bool normalControls = true;
 
@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    
     void FixedUpdate()
     {
         if (normalControls){
@@ -49,6 +48,6 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Switch")){
             normalControls = !normalControls;
-        }        
-    }
+        }
+   }
 }
