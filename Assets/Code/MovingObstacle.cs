@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
 public class MovingObstacle : MonoBehaviour
 {
      public float delta = 1.5f;  // Amount to move left and right from the start point   
