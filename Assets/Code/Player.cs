@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -15,8 +14,6 @@ public class Player : MonoBehaviour
     int jumps = 0;
     bool normalControls = true;
 
-    public int totalJumps = 0;
-    public int jumpLimit = 5;
 
     void Start()
     {
@@ -35,7 +32,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
         isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
         if(isgrounded){
             jumps = 1;
@@ -46,7 +42,6 @@ public class Player : MonoBehaviour
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0,jumpForce));
             jumps --;
-            totalJumps++;
         }
     }
 
