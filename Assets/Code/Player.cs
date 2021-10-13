@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -25,9 +26,28 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector3 charecterScale = transform.localScale;
         if (normalControls){
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                charecterScale.x = -Math.Abs(charecterScale.x);
+            }
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                charecterScale.x = Math.Abs(charecterScale.x);
+            }
+            transform.localScale = charecterScale;
             xSpeed = Input.GetAxis("Horizontal") * speed;
         } else {
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                charecterScale.x = Math.Abs(charecterScale.x);
+            }
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                charecterScale.x = -Math.Abs(charecterScale.x);
+            }
+            transform.localScale = charecterScale;
             xSpeed = -Input.GetAxis("Horizontal") * speed;
         }
         _rigidbody.velocity = new Vector2(xSpeed, _rigidbody.velocity.y);
@@ -35,7 +55,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
         isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
         if(isgrounded){
             jumps = 1;
@@ -46,7 +65,7 @@ public class Player : MonoBehaviour
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0,jumpForce));
             jumps --;
-            totalJumps++;
+            if(totalJumps<jumpLimit) totalJumps++;
         }
     }
 
@@ -54,5 +73,15 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Switch")){
             normalControls = !normalControls;
         }
+
+        if (other.CompareTag("Ghost")){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (other.CompareTag("Candy")){
+            Destroy(other.gameObject);
+            if(totalJumps>0) totalJumps--;
+        }
+
    }
 }
