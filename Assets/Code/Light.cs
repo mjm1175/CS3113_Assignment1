@@ -19,7 +19,7 @@ public class Light : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(playerScript.isgrounded || playerScript.totalJumps>=playerScript.jumpLimit){
+        if(playerScript.isgrounded || playerScript.totalJumps>playerScript.jumpLimit){
             if(playerLight.pointLightOuterRadius > minRadius) playerLight.pointLightOuterRadius -= Time.deltaTime * 30;
         }
         else{
