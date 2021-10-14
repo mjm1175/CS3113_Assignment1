@@ -6,7 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Light : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject player;
+    public GameObject source;
     public Light2D playerLight;
     public Player playerScript;
     public float minRadius = 2f;
@@ -19,12 +19,12 @@ public class Light : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(playerScript.isgrounded || playerScript.totalJumps>=playerScript.jumpLimit){
+        if(playerScript.isgrounded || playerScript.totalJumps>playerScript.jumpLimit){
             if(playerLight.pointLightOuterRadius > minRadius) playerLight.pointLightOuterRadius -= Time.deltaTime * 30;
         }
         else{
             playerLight.pointLightOuterRadius += Time.deltaTime * 20;
         }
-        transform.position = player.transform.position;
+        transform.position = source.transform.position;
     }
 }

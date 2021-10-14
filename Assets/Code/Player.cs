@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0,jumpForce));
             jumps --;
-            if(totalJumps<jumpLimit) totalJumps++;
+            if(totalJumps<=jumpLimit) totalJumps++;
         }
     }
 
@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
 
         if (other.CompareTag("Candy")){
             Destroy(other.gameObject);
+            if(totalJumps>jumpLimit) totalJumps--;
             if(totalJumps>0) totalJumps--;
         }
 
