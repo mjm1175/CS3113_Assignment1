@@ -26,28 +26,28 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 charecterScale = transform.localScale;
+        Vector3 characterScale = transform.localScale;
         if (normalControls){
             if (Input.GetAxis("Horizontal") < 0)
             {
-                charecterScale.x = -Math.Abs(charecterScale.x);
+                characterScale.x = -Math.Abs(characterScale.x);
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
-                charecterScale.x = Math.Abs(charecterScale.x);
+                characterScale.x = Math.Abs(characterScale.x);
             }
-            transform.localScale = charecterScale;
+            transform.localScale = characterScale;
             xSpeed = Input.GetAxis("Horizontal") * speed;
         } else {
             if (Input.GetAxis("Horizontal") < 0)
             {
-                charecterScale.x = Math.Abs(charecterScale.x);
+                characterScale.x = Math.Abs(characterScale.x);
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
-                charecterScale.x = -Math.Abs(charecterScale.x);
+                characterScale.x = -Math.Abs(characterScale.x);
             }
-            transform.localScale = charecterScale;
+            transform.localScale = characterScale;
             xSpeed = -Input.GetAxis("Horizontal") * speed;
         }
         _rigidbody.velocity = new Vector2(xSpeed, _rigidbody.velocity.y);
@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Switch")){
             normalControls = !normalControls;
+            Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Ghost")){

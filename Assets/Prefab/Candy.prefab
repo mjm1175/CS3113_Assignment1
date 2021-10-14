@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7480931374446506275}
   - component: {fileID: 2103897835428939030}
-  - component: {fileID: 2466298179105063288}
+  - component: {fileID: 954316548613522538}
+  - component: {fileID: 6199335980679505937}
   m_Layer: 0
   m_Name: Candy
-  m_TagString: Candy
+  m_TagString: Switch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,8 +84,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2466298179105063288
-CircleCollider2D:
+--- !u!60 &954316548613522538
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,6 +97,70 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029197693, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.0281532
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 0.8}
+    newSize: {x: 0.8, y: 0.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.046018332, y: 0.23318768}
+      - {x: -0.08639124, y: 0.40746686}
+      - {x: -0.24412715, y: 0.4010172}
+      - {x: -0.36299276, y: 0.33564228}
+      - {x: -0.39723894, y: 0.19955969}
+      - {x: -0.39438328, y: 0.10613632}
+      - {x: -0.21819448, y: 0.094807744}
+      - {x: -0.24319562, y: -0.14026494}
+      - {x: 0.10798617, y: -0.39095533}
+      - {x: 0.2444049, y: -0.39672017}
+      - {x: 0.36374915, y: -0.2917303}
+      - {x: 0.4, y: -0.112525254}
+      - {x: 0.23946217, y: -0.033741295}
+      - {x: 0.100662485, y: 0.19092748}
+--- !u!114 &6199335980679505937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093475559694224576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.509656, g: 0.11764705, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0.3
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0.6
+  m_ShadowVolumeIntensity: 0.3
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 2
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
