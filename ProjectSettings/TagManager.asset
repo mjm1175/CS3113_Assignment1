@@ -8,6 +8,7 @@ TagManager:
   - Obtacle
   - Candy
   - Ghost
+  - Falling
   layers:
   - Default
   - TransparentFX
