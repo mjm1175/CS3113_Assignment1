@@ -20,13 +20,12 @@ public class Player : MonoBehaviour
     public int totalJumps = 0;
     public int jumpLimit = 5;
 
-
-    
-
+    Animator _animator;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -56,12 +55,15 @@ public class Player : MonoBehaviour
             xSpeed = -Input.GetAxis("Horizontal") * speed;
         }
         _rigidbody.velocity = new Vector2(xSpeed, _rigidbody.velocity.y);
+        _animator.SetFloat("Speed", Math.Abs(xSpeed));
     }
 
     void Update()
     {
         isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
+        _animator.SetBool("Grounded", isgrounded);
         if(isgrounded){
+            _animator.ResetTrigger("Jump");
             jumps = 1;
         }
 
@@ -71,6 +73,7 @@ public class Player : MonoBehaviour
             _rigidbody.AddForce(new Vector2(0,jumpForce));
             jumps --;
             if(totalJumps<=jumpLimit) totalJumps++;
+            _animator.SetTrigger("Jump");
         }
     }
 
