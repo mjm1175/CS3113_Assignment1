@@ -6,7 +6,6 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Light : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject source;
     public Light2D playerLight;
     public Player playerScript;
     public float minRadius = 2f;
@@ -25,6 +24,5 @@ public class Light : MonoBehaviour
         else{
             playerLight.pointLightOuterRadius += Time.deltaTime * 20;
         }
-        transform.position = source.transform.position;
     }
 }
