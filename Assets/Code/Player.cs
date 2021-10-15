@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -19,9 +20,16 @@ public class Player : MonoBehaviour
     public int totalJumps = 0;
     public int jumpLimit = 5;
 
+
+    public GameObject txt1;
+    public GameObject txt2;
+
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        txt1.SetActive(true);
+        txt2.SetActive(false);
     }
 
     void FixedUpdate()
@@ -84,5 +92,12 @@ public class Player : MonoBehaviour
             if(totalJumps>jumpLimit) totalJumps--;
             if(totalJumps>0) totalJumps--;
         }
+
+        if (other.CompareTag("Tutorial")){
+            Destroy(other.gameObject);
+            txt2.SetActive(true);
+            txt1.SetActive(false);
+        }
+
    }
 }
