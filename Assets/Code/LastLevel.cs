@@ -11,10 +11,7 @@ public class LastLevel : MonoBehaviour
             // try something with "SceneManager.GetActiveScene().name"
             // make sure it doesn't load past levels that exist
             // update so that when you die levelnum resets to 1
-            print("You win!");
-
-            GlobalVars.levelNum = 1;
-            SceneManager.LoadScene("Level " + GlobalVars.levelNum);
+            SceneManager.LoadScene("End Scene");
         }
     }
 }
