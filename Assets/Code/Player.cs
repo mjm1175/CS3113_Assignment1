@@ -86,13 +86,13 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Switch")){
             normalControls = !normalControls;
-            _audioSource.PlayOneShot(purpleCSnd);
+            _audioSource.PlayOneShot(purpleCSnd,0.6f);
             Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Ghost")){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             _audioSource.PlayOneShot(ghostSnd);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         if (other.CompareTag("Candy")){
