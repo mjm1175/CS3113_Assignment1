@@ -20,12 +20,18 @@ public class Player : MonoBehaviour
     public int totalJumps = 0;
     public int jumpLimit = 5;
 
+    public AudioClip yellowCSnd;
+    public AudioClip purpleCSnd;
+    public AudioClip ghostSnd;
+    AudioSource _audioSource;
+
     Animator _animator;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -80,14 +86,17 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Switch")){
             normalControls = !normalControls;
+            _audioSource.PlayOneShot(purpleCSnd);
             Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Ghost")){
+            _audioSource.PlayOneShot(ghostSnd);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         if (other.CompareTag("Candy")){
+            _audioSource.PlayOneShot(yellowCSnd);
             Destroy(other.gameObject);
             if(totalJumps>jumpLimit) totalJumps--;
             if(totalJumps>0) totalJumps--;
