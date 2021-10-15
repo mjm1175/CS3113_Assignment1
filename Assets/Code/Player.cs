@@ -91,8 +91,8 @@ public class Player : MonoBehaviour
         }
 
         if (other.CompareTag("Ghost")){
-            _audioSource.PlayOneShot(ghostSnd);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _audioSource.PlayOneShot(ghostSnd);
         }
 
         if (other.CompareTag("Candy")){
