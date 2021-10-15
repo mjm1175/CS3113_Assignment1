@@ -91,8 +91,8 @@ public class Player : MonoBehaviour
         }
 
         if (other.CompareTag("Ghost")){
-            _audioSource.PlayOneShot(ghostSnd);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _audioSource.PlayOneShot(ghostSnd,0.1f);
+            StartCoroutine(RestartLevel());
         }
 
         if (other.CompareTag("Candy")){
@@ -103,4 +103,9 @@ public class Player : MonoBehaviour
         }
 
    }
+
+    IEnumerator RestartLevel() {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+ }
 }
