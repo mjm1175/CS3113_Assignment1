@@ -84,6 +84,5 @@ public class Player : MonoBehaviour
             if(totalJumps>jumpLimit) totalJumps--;
             if(totalJumps>0) totalJumps--;
         }
-
    }
 }
