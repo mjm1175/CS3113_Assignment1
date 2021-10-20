@@ -21,7 +21,7 @@ public class Cat : MonoBehaviour
 
     // Update is called once per frame
     IEnumerator CatEscape() {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.0f);
         _animator.SetBool("Escape", true);
         _rigidbody.velocity = new Vector2(speed, _rigidbody.velocity.y);
     }

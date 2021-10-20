@@ -27,6 +27,7 @@ public class Tutorial : MonoBehaviour
         txt7.SetActive(false);
         txt8.SetActive(false);
         txt9.SetActive(false);
+        StartCoroutine(UpdateTxt1());
     }
 
    private void OnTriggerEnter2D(Collider2D other) {
@@ -59,5 +60,11 @@ public class Tutorial : MonoBehaviour
                 txt8.SetActive(false);
             }
         }
+    }
+
+    IEnumerator UpdateTxt1() {
+        yield return new WaitForSeconds(1.55f);
+        //txt1.GetComponent<UnityEngine.UI.Text>().text = "Wait... Comeback!!!"; 
+
     }
 }
