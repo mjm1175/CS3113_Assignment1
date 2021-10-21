@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(transform.position[1]<-8) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
         _animator.SetBool("Grounded", isgrounded);
         if(isgrounded){
