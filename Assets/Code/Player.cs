@@ -29,16 +29,19 @@ public class Player : MonoBehaviour
 
     public PauseMenu pauseMenu;
 
+    bool dead;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        dead = false;
     }
 
     void FixedUpdate()
     {
-        if(!pauseMenu.isPaused)
+        if(!pauseMenu.isPaused && !dead)
         {
             Vector3 characterScale = transform.localScale;
             if (normalControls){
@@ -71,7 +74,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(!pauseMenu.isPaused)
+        if(!pauseMenu.isPaused && !dead)
         {
             if(transform.position[1]<-10) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
@@ -99,8 +102,10 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.CompareTag("Ghost")){
+        if (other.CompareTag("Ghost") && !dead){
             _audioSource.PlayOneShot(ghostSnd,0.1f);
+            dead = true;
+            _animator.SetTrigger("Die");
             StartCoroutine(RestartLevel());
         }
 
@@ -114,7 +119,12 @@ public class Player : MonoBehaviour
    }
 
     IEnumerator RestartLevel() {
+        
         yield return new WaitForSeconds(2f);
+        dead = false;
+        _animator.ResetTrigger("Die");
+        
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
  }
 }
