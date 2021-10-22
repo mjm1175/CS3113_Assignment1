@@ -63,6 +63,6 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         isPaused = false;
         Time.timeScale = 1f;
-         Application.Quit();
+        Application.Quit();
     }
 }
