@@ -109,9 +109,16 @@ public class Player : MonoBehaviour
             StartCoroutine(RestartLevel());
         }
 
+        if (other.CompareTag("Respawn")){
+            _audioSource.PlayOneShot(yellowCSnd);
+            //Destroy(other.gameObject);      // don't destroy
+            if(totalJumps>jumpLimit) totalJumps--;
+            if(totalJumps>0) totalJumps--;
+        }
+
         if (other.CompareTag("Candy")){
             _audioSource.PlayOneShot(yellowCSnd);
-            Destroy(other.gameObject);
+            Destroy(other.gameObject);      
             if(totalJumps>jumpLimit) totalJumps--;
             if(totalJumps>0) totalJumps--;
         }
