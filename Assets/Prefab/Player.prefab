@@ -300,6 +300,9 @@ MonoBehaviour:
   isgrounded: 0
   totalJumps: 0
   jumpLimit: 5
+  yellowCSnd: {fileID: 0}
+  purpleCSnd: {fileID: 0}
+  ghostSnd: {fileID: 0}
 --- !u!61 &8561345432594482360
 BoxCollider2D:
   m_ObjectHideFlags: 0
