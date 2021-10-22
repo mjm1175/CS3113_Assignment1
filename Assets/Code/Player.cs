@@ -76,14 +76,7 @@ public class Player : MonoBehaviour
     {
         if(!pauseMenu.isPaused && !dead)
         {
-            if(transform.position[1]<-10)
-            {
-                _audioSource.PlayOneShot(ghostSnd,0.1f);
-                dead = true;
-                _animator.SetTrigger("Die");
-                StartCoroutine(RestartLevel());
-            }
-
+            if(transform.position[1]<-10) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
             _animator.SetBool("Grounded", isgrounded);
             if(isgrounded){
@@ -116,16 +109,9 @@ public class Player : MonoBehaviour
             StartCoroutine(RestartLevel());
         }
 
-        if (other.CompareTag("Respawn")){
-            _audioSource.PlayOneShot(yellowCSnd);
-            //Destroy(other.gameObject);      // don't destroy
-            if(totalJumps>jumpLimit) totalJumps--;
-            if(totalJumps>0) totalJumps--;
-        }
-
         if (other.CompareTag("Candy")){
             _audioSource.PlayOneShot(yellowCSnd);
-            Destroy(other.gameObject);      
+            Destroy(other.gameObject);
             if(totalJumps>jumpLimit) totalJumps--;
             if(totalJumps>0) totalJumps--;
         }
@@ -133,9 +119,12 @@ public class Player : MonoBehaviour
    }
 
     IEnumerator RestartLevel() {
+        
         yield return new WaitForSeconds(2f);
         dead = false;
         _animator.ResetTrigger("Die");
+        
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
  }
 }
