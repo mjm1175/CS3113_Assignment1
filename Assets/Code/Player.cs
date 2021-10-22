@@ -27,8 +27,6 @@ public class Player : MonoBehaviour
 
     Animator _animator;
 
-    public PauseMenu pauseMenu;
-
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -38,57 +36,50 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!pauseMenu.isPaused)
-        {
-            Vector3 characterScale = transform.localScale;
-            if (normalControls){
-                if (Input.GetAxis("Horizontal") < 0)
-                {
-                    characterScale.x = -Math.Abs(characterScale.x);
-                }
-                else if (Input.GetAxis("Horizontal") > 0)
-                {
-                    characterScale.x = Math.Abs(characterScale.x);
-                }
-                transform.localScale = characterScale;
-                xSpeed = Input.GetAxis("Horizontal") * speed;
-            } else {
-                if (Input.GetAxis("Horizontal") < 0)
-                {
-                    characterScale.x = Math.Abs(characterScale.x);
-                }
-                else if (Input.GetAxis("Horizontal") > 0)
-                {
-                    characterScale.x = -Math.Abs(characterScale.x);
-                }
-                transform.localScale = characterScale;
-                xSpeed = -Input.GetAxis("Horizontal") * speed;
+        Vector3 characterScale = transform.localScale;
+        if (normalControls){
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                characterScale.x = -Math.Abs(characterScale.x);
             }
-            _rigidbody.velocity = new Vector2(xSpeed, _rigidbody.velocity.y);
-            _animator.SetFloat("Speed", Math.Abs(xSpeed));
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                characterScale.x = Math.Abs(characterScale.x);
+            }
+            transform.localScale = characterScale;
+            xSpeed = Input.GetAxis("Horizontal") * speed;
+        } else {
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                characterScale.x = Math.Abs(characterScale.x);
+            }
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                characterScale.x = -Math.Abs(characterScale.x);
+            }
+            transform.localScale = characterScale;
+            xSpeed = -Input.GetAxis("Horizontal") * speed;
         }
+        _rigidbody.velocity = new Vector2(xSpeed, _rigidbody.velocity.y);
+        _animator.SetFloat("Speed", Math.Abs(xSpeed));
     }
 
     void Update()
     {
-        if(!pauseMenu.isPaused)
-        {
-            if(transform.position[1]<-8) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
-            _animator.SetBool("Grounded", isgrounded);
-            if(isgrounded){
-                _animator.ResetTrigger("Jump");
-                jumps = 1;
-            }
+        isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
+        _animator.SetBool("Grounded", isgrounded);
+        if(isgrounded){
+            _animator.ResetTrigger("Jump");
+            jumps = 1;
+        }
 
-            if(Input.GetButtonDown("Jump") && (jumps > 0 || isgrounded))
-            {
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
-                _rigidbody.AddForce(new Vector2(0,jumpForce));
-                jumps --;
-                if(totalJumps<=jumpLimit) totalJumps++;
-                _animator.SetTrigger("Jump");
-            }
+        if(Input.GetButtonDown("Jump") && (jumps > 0 || isgrounded))
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
+            _rigidbody.AddForce(new Vector2(0,jumpForce));
+            jumps --;
+            if(totalJumps<=jumpLimit) totalJumps++;
+            _animator.SetTrigger("Jump");
         }
     }
 
