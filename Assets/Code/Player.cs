@@ -76,7 +76,12 @@ public class Player : MonoBehaviour
     {
         if(!pauseMenu.isPaused && !dead)
         {
-            if(transform.position[1]<-10) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if(transform.position[1]<-10) {
+                _audioSource.PlayOneShot(ghostSnd,0.1f);
+                dead = true;
+                _animator.SetTrigger("Die");
+                StartCoroutine(RestartLevel());
+            }
             isgrounded = Physics2D.OverlapCircle(feetPos.position, .3f, groundLayer);
             _animator.SetBool("Grounded", isgrounded);
             if(isgrounded){
@@ -130,8 +135,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2f);
         dead = false;
         _animator.ResetTrigger("Die");
-        
-        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
  }
 }
