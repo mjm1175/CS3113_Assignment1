@@ -64,7 +64,6 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator UpdateTxt1() {
         yield return new WaitForSeconds(1.55f);
-        //txt1.GetComponent<UnityEngine.UI.Text>().text = "Wait... Comeback!!!"; 
-
+        txt1.GetComponent<UnityEngine.UI.Text>().text = "Wait... Comeback!!!"; 
     }
 }
